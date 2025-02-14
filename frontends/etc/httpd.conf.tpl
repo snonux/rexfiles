@@ -65,6 +65,15 @@ server "<%= $prefix %>buetow.org" {
   }
 }
 
+# Redirect blog to foo.zone
+server "<%= $prefix %>blog.buetow.org" {
+  listen on * port 8080
+  log style forwarded 
+  location * {
+    block return 302 "https://foo.zone$REQUEST_URI"
+  }
+}
+
 server "<%= $prefix %>snonux.foo" {
   listen on * port 8080
   log style forwarded 
